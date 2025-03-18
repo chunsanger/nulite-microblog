@@ -29,7 +29,7 @@ Nulite comes with several configuration options that can be set in the Micro.blo
 
 ## Credits
 
-This theme is a conversion of the [Nulite Eleventy theme](https://github.com/chunsanger/nulite) by Chunsanger, adapted for Micro.blog by [Your Name].
+This theme is a conversion of the [Nulite Eleventy theme](https://github.com/chunsanger/nulite) by Chunsanger, adapted for Micro.blog
 
 ## License
 
