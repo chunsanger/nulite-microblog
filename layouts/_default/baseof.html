@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}" class="no-js">
+  {{ partial "head.html" . }}
+  <body>
+    <a href="#skip" class="visually-hidden">Skip to main content</a>
+    {{ partial "header.html" . }}
+    <main class="main-container" id="skip">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+    <script defer type="text/javascript" src="{{ "js/theme-toggle.js" | relURL }}"></script>
+    <script defer type="text/javascript" src="{{ "js/menu.js" | relURL }}"></script>
+    {{- range .Site.Params.plugins_js -}}
+    <script defer type="text/javascript" src="{{ . }}"></script>
+    {{- end -}}
+  </body>
+</html> 

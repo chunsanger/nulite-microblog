@@ -1,0 +1,10 @@
+name = "Nulite"
+license = "MIT"
+description = "A clean and minimal Micro.blog theme focused on content and readability."
+tags = ["blog", "minimal", "light", "dark", "responsive"]
+features = ["blog", "minimal"]
+min_version = "0.0.1"
+
+[author]
+  name = "Your Name"
+  homepage = "https://example.com/" 

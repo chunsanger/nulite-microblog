@@ -1,0 +1,82 @@
+{{ define "main" }}
+<div class="main-sections">
+  <!-- Latest Article Section -->
+  <section class="latest-section">
+    <h2>Latest</h2>
+    {{- $posts := where .Pages.ByDate.Reverse "Type" "post" }}
+    {{- $firstPost := index $posts 0 }}
+    {{- if $firstPost }}
+    <div class="latest-article">
+      <h3 class="article-title">
+        <a href="{{ $firstPost.Permalink }}">
+          {{- if $firstPost.Title }}
+            {{ $firstPost.Title }}
+          {{- else }}
+            {{ $firstPost.Date.Format "Jan 2, 2006" }}
+          {{- end }}
+        </a>
+      </h3>
+      <div class="article-date">
+        {{ $firstPost.Date.Format "January 2, 2006" }} • 
+        {{- $readingTime := div (countwords $firstPost.Content) 180 }}
+        {{- if lt $readingTime 1 }}1{{ else }}{{ $readingTime }}{{ end }} minute read
+      </div>
+      <div class="article-excerpt">
+        <p>
+          {{- if $firstPost.Description }}
+            {{ $firstPost.Description }}
+          {{- else }}
+            {{ $firstPost.Summary }}
+          {{- end }}
+        </p>
+        <p><a href="{{ $firstPost.Permalink }}" class="read-more">Read more →</a></p>
+      </div>
+    </div>
+    {{- end }}
+  </section>
+
+  <!-- All Posts Section -->
+  <section class="all-posts-section">
+    <h2>All Posts</h2>
+    {{- $paginator := .Paginate (where .Pages.ByDate.Reverse "Type" "post") 10 }}
+    {{- range $index, $post := $paginator.Pages }}
+      {{- if ne $index 0 }}
+      <article class="post-item">
+        <h3 class="article-title">
+          <a href="{{ $post.Permalink }}">
+            {{- if $post.Title }}
+              {{ $post.Title }}
+            {{- else }}
+              {{ $post.Date.Format "Jan 2, 2006" }}
+            {{- end }}
+          </a>
+        </h3>
+        <div class="article-date">
+          {{ $post.Date.Format "January 2, 2006" }}
+        </div>
+        {{- if $post.Title }}
+          <div class="article-excerpt">
+            <p>{{ $post.Summary | safeHTML }}</p>
+            <p><a href="{{ $post.Permalink }}" class="read-more">Read more →</a></p>
+          </div>
+        {{- else }}
+          <div class="article-content">
+            {{ $post.Content }}
+          </div>
+        {{- end }}
+      </article>
+      {{- end }}
+    {{- end }}
+    
+    <!-- Pagination -->
+    {{- if or ( $paginator.HasNext ) ( $paginator.HasPrev ) }}
+    <nav class="pagination">
+      <ul>
+        <li>{{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">← Older</a>{{ end }}</li>
+        <li>{{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">Newer →</a>{{ end }}</li> 
+      </ul>
+    </nav>
+    {{- end }}
+  </section>
+</div>
+{{ end }} 

@@ -1,0 +1,54 @@
+<footer class="footer">
+  <nav>
+    <ul class="footer-links">
+      <!-- Show social links from Micro.blog settings -->
+      {{ with .Site.Author.mastodon }}
+      <li>
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer me">
+          <span class="social-icon">
+            <i class="fa-brands fa-mastodon"></i>
+          </span>
+          Mastodon
+        </a>
+      </li>
+      {{ end }}
+      
+      {{ with .Site.Author.bluesky }}
+      <li>
+        <a href="https://bsky.app/profile/{{ . }}" target="_blank" rel="noopener noreferrer me">
+          <span class="social-icon">
+            <i class="fa-brands fa-bluesky"></i>
+          </span>
+          BlueSky
+        </a>
+      </li>
+      {{ end }}
+      
+      {{ with .Site.Author.twitter }}
+      <li>
+        <a href="https://twitter.com/{{ . }}" target="_blank" rel="noopener noreferrer me">
+          <span class="social-icon">
+            <i class="fa-brands fa-twitter"></i>
+          </span>
+          Twitter
+        </a>
+      </li>
+      {{ end }}
+      
+      <li>
+        <a href="/feed.json">
+          <span class="social-icon">
+            <i class="fa-solid fa-rss"></i>
+          </span>
+          Feed
+        </a>
+      </li>
+    </ul>
+  </nav>
+  
+  {{ if not .Site.Params.hide_credit }}
+  <div class="footer-credit">
+    <p>Powered by <a href="https://micro.blog/">Micro.blog</a> | Theme: Nulite</p>
+  </div>
+  {{ end }}
+</footer> 

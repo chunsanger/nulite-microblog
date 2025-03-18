@@ -1,0 +1,40 @@
+{{- define "main" }}
+<section class="archive">
+  <h1 class="page-title">Archive</h1>
+  
+  {{- $list := ($.Site.GetPage "taxonomyTerm" "categories").Pages }}
+  {{- if and (.Site.Params.show_categories) (gt (len $list) 0) }}
+  <div class="archive-categories">
+    <div class="category-list">
+      {{ range $list }}
+      <a href="{{ .Permalink }}"><button class="category-button">{{ .Title }}</button></a>
+      {{ end }}
+    </div>
+  </div>
+  {{- end }}
+  
+  {{- $posts := where .Site.RegularPages "Type" "post" }}
+  {{- $grouped := $posts.GroupByDate "January 2006" }}
+  
+  <div class="archive-entries">
+    {{- range $grouped }}
+      <h2 class="archive-month">{{ .Key }}</h2>
+      <div class="archive-month-entries">
+        {{- range .Pages }}
+        <div class="archive-entry">
+          <div class="archive-date">
+            <a href="{{ .Permalink }}">{{ .Date.Format "Monday, January 2" }} →</a>
+          </div>
+          <div class="archive-content">
+            {{- if .Title }}
+            <span class="archive-title">{{ .Title }}:</span>
+            {{- end }}
+            <span class="archive-summary">{{ .Summary | safeHTML | truncate 300 }}</span>
+          </div>
+        </div>
+        {{- end }}
+      </div>
+    {{- end }}
+  </div>
+</section>
+{{- end }} 
