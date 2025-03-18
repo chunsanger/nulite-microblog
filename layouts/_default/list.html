@@ -17,19 +17,17 @@
         </a>
       </h3>
       <div class="article-date">
-        {{ $firstPost.Date.Format "January 2, 2006" }} • 
-        {{- $readingTime := div (countwords $firstPost.Content) 180 }}
-        {{- if lt $readingTime 1 }}1{{ else }}{{ $readingTime }}{{ end }} minute read
+        {{ $firstPost.Date.Format "January 2, 2006" }}
       </div>
       <div class="article-excerpt">
         <p>
           {{- if $firstPost.Description }}
-            {{ $firstPost.Description }}
+            {{ $firstPost.Description | truncate 280 }}
           {{- else }}
-            {{ $firstPost.Summary }}
+            {{ $firstPost.Summary | truncate 280 }}
           {{- end }}
         </p>
-        <p><a href="{{ $firstPost.Permalink }}" class="read-more">Read more →</a></p>
+        <p><a href="{{ $firstPost.Permalink }}" class="read-more">Continue reading →</a></p>
       </div>
     </div>
     {{- end }}
@@ -56,12 +54,13 @@
         </div>
         {{- if $post.Title }}
           <div class="article-excerpt">
-            <p>{{ $post.Summary | safeHTML }}</p>
-            <p><a href="{{ $post.Permalink }}" class="read-more">Read more →</a></p>
+            <p>{{ $post.Summary | safeHTML | truncate 280 }}</p>
+            <p><a href="{{ $post.Permalink }}" class="read-more">Continue reading →</a></p>
           </div>
         {{- else }}
           <div class="article-content">
-            {{ $post.Content }}
+            {{ $post.Content | truncate 280 }}
+            <p><a href="{{ $post.Permalink }}" class="read-more">Continue reading →</a></p>
           </div>
         {{- end }}
       </article>

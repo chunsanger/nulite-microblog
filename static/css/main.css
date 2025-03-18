@@ -374,14 +374,20 @@ code {
   color: var(--color-text-shade);
   font-size: var(--font-size-xs);
   margin-bottom: var(--space-3);
+  opacity: 0.85;
 }
 
 .article-excerpt {
   margin-top: var(--space-2);
 }
 
+.article-excerpt p {
+  margin-bottom: var(--space-2);
+}
+
 .read-more {
   font-weight: 500;
+  color: var(--color-primary);
 }
 
 /* Pagination */
