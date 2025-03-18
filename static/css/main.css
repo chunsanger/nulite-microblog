@@ -128,7 +128,7 @@ a:hover {
 }
 
 /* Add arrow to external links */
-a[href^="http"]:not([href*="micro.blog"]):after {
+a[href^="http"]:not([href*="micro.blog"]):not([href*="hunsanger.blog"]):after {
   content: " ↗";
   display: inline-block;
   font-family: system-ui, sans-serif;
